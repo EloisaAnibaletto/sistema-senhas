@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Models;
+using System.Text.RegularExpressions;
 using Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Windows.Forms;
@@ -20,6 +21,20 @@ namespace Controllers
             string Procedimento
         )
         {
+            if (String.IsNullOrEmpty(Url)) 
+            {
+                throw new Exception("Url é obrigatório");
+            }
+            Regex rx = new Regex(
+                "https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+"
+                + "[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+"
+                + "[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))"
+                + "[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,}"
+            );
+            if (String.IsNullOrEmpty(Url) || !rx.IsMatch(Url))
+            {
+                throw new Exception("A url é inválida.");
+            }
             if (String.IsNullOrEmpty(SenhaEncrypt)) 
             {
                 throw new Exception("Senha é obrigatório");
@@ -43,6 +58,7 @@ namespace Controllers
         )
         {
             Senha senha = Senha.GetSenha(Id);
+            CategoriaController.GetCategoria(CategoriaId);
 
             if (!String.IsNullOrEmpty(Nome))
             {
