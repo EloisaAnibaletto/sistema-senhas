@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Models;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Text;
 
@@ -15,6 +16,12 @@ namespace Controllers
             string Senha
         )
         {
+            Regex rx = new Regex("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
+
+            if (String.IsNullOrEmpty(Email) || !rx.IsMatch(Email))
+            {
+                throw new Exception("Email inválido");
+            }
             if (String.IsNullOrEmpty(Email)) 
             {
                 throw new Exception("Email é obrigatório");
