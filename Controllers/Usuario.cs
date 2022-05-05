@@ -51,6 +51,11 @@ namespace Controllers
             {
                 usuario.Nome = Nome;
             }
+            Regex rx = new Regex("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
+            if (String.IsNullOrEmpty(Email) || !rx.IsMatch(Email))
+            {
+                throw new Exception("Email inválido");
+            }
             if (!String.IsNullOrEmpty(Email)) 
             {
                 usuario.Email = Email;
@@ -65,17 +70,17 @@ namespace Controllers
             }
             return usuario;
         }
-        public static Tag ExcluirTag(
+        public static Usuario ExcluirUsuario(
             int Id
         )
         {
-            Tag tag = Tag.GetTag(Id);
-            Models.Tag.RemoverTag(tag);
-            return tag;
+            Usuario usuario = Usuario.GetUsuario(Id);
+            Models.Usuario.RemoverUsuario(usuario);
+            return usuario;
         }
-        public static IEnumerable<Tag> GetTags()
+        public static IEnumerable<Usuario> GetUsuarios()
         {
-            return Tag.GetTags();
+            return Usuario.GetUsuarios();
         }
 
         public static Usuario GetUsuario(
@@ -94,6 +99,15 @@ namespace Controllers
             }
 
             return usuario;
+        }
+        public static void Auth(string Email, string Senha) {
+            try {
+                Usuario.Auth(Email, Senha);
+            }
+            catch
+            {
+                throw new Exception("Email ou senha inválido");
+            }
         }
     }
 }
