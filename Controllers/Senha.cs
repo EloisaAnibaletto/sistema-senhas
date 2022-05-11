@@ -76,6 +76,10 @@ namespace Controllers
             {
                 senha.Nome = Nome;
             }
+            if (CategoriaId < 0) 
+            {
+                senha.CategoriaId = CategoriaId;
+            }
             Regex rx = new Regex(
                 "https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+"
                 + "[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+"
