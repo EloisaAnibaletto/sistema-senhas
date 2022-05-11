@@ -21,6 +21,14 @@ namespace Controllers
             string Procedimento
         )
         {
+            if (String.IsNullOrEmpty(Nome)) 
+            {
+                throw new Exception("Nome é obrigatório");
+            }
+            if (CategoriaId < 0) 
+            {
+                throw new Exception("Categoria é obrigatório");
+            }
             if (String.IsNullOrEmpty(Url)) 
             {
                 throw new Exception("Url é obrigatório");
@@ -34,6 +42,10 @@ namespace Controllers
             if (String.IsNullOrEmpty(Url) || !rx.IsMatch(Url))
             {
                 throw new Exception("A url é inválida.");
+            }
+            if (String.IsNullOrEmpty(Usuario)) 
+            {
+                throw new Exception("Usuario é obrigatório");
             }
             if (String.IsNullOrEmpty(SenhaEncrypt)) 
             {
