@@ -45,29 +45,39 @@ namespace Controllers
             string Senha
         )
         {
-            Usuario usuario = Usuario.GetUsuario(Id);
+            Usuario usuario;
+            try {
+                usuario = Usuario.GetUsuario(Id);
+            }
+            catch
+            {
+                throw new Exception("Usuário não encontrado.");
+            }
 
             if (!String.IsNullOrEmpty(Nome))
             {
                 usuario.Nome = Nome;
             }
+            usuario.Nome = Nome;
+
             Regex rx = new Regex("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
             if (String.IsNullOrEmpty(Email) || !rx.IsMatch(Email))
             {
                 throw new Exception("Email inválido");
             }
-            if (!String.IsNullOrEmpty(Email)) 
+            if (!String.IsNullOrEmpty(Email))
             {
                 usuario.Email = Email;
             }
-            if (!String.IsNullOrEmpty(Senha)) 
-            {
-                usuario.Senha = Senha;
-            }
-            if (Senha.Length < 8) 
-            {
+            usuario.Email = Email;
+
+            if (Senha.Length < 8) {
                 throw new Exception("A senha deve ter no mínimo 8 caracteres.");
             }
+            usuario.Senha = Senha;
+
+            Models.Usuario.AlterarUsuario(Id, Nome, Email, Senha);
+
             return usuario;
         }
         public static Usuario ExcluirUsuario(
