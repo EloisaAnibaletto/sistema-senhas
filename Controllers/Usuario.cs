@@ -26,13 +26,16 @@ namespace Controllers
             {
                 throw new Exception("Email é obrigatório");
             }
+            if (Senha.Length < 8) {
+                throw new Exception("A senha deve ter no mínimo 8 caracteres.");
+            }
+            else
+            {
+                Senha = BCrypt.Net.BCrypt.HashPassword(Senha);
+            }
             if (String.IsNullOrEmpty(Senha)) 
             {
                 throw new Exception("Senha é obrigatório");
-            }
-            if (Senha.Length < 8) 
-            {
-                throw new Exception("A senha deve ter no mínimo 8 caracteres.");
             }
 
             return new Usuario(Nome, Email, Senha);
