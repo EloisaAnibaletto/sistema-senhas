@@ -25,9 +25,12 @@ namespace Controllers
             {
                 throw new Exception("Nome é obrigatório");
             }
-            if (CategoriaId < 0) 
+            try {
+                CategoriaController.GetCategoria(CategoriaId);
+            }
+            catch
             {
-                throw new Exception("Categoria é obrigatório");
+                throw new Exception("Categoria inválida");
             }
             if (String.IsNullOrEmpty(Url)) 
             {
@@ -76,9 +79,12 @@ namespace Controllers
             {
                 senha.Nome = Nome;
             }
-            if (CategoriaId < 0) 
+            try {
+                CategoriaController.GetCategoria(CategoriaId);
+            }
+            catch
             {
-                senha.CategoriaId = CategoriaId;
+                throw new Exception("Categoria inválida");
             }
             Regex rx = new Regex(
                 "https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+"
