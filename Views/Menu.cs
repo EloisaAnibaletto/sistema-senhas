@@ -13,13 +13,16 @@ namespace Views
 {
     public class Menu : BaseForm
     {
+        Form parent;
         ButtonForm btnCategoria;
         ButtonForm btnTag;
         ButtonForm btnSenhas;
         ButtonForm btnUsuário;
         ButtonForm btnSair;
-        public Menu() : base("Bem-Vindo", SizeScreen.Small) 
+        public Menu(Form parent) : base("Bem-Vindo", SizeScreen.Small) 
         {
+            this.parent = parent;
+            this.parent.Hide();
             btnCategoria = new ButtonForm("Categoria", 100, 30, this.handleCategoria);
             btnTag = new ButtonForm("Tag", 100, 80, this.handleTag);
             btnSenhas = new ButtonForm("Senhas", 100, 130, this.handleSenhas);
@@ -34,7 +37,7 @@ namespace Views
         }
         private void handleCategoria(object sender, EventArgs e)
         {
-            //(new ()).Show();
+            (new CategoriaCrud(this)).Show();
             this.Hide();
 
         }
@@ -57,8 +60,8 @@ namespace Views
 
         }
         private void handleSair(object sender, EventArgs e) {
-			(new Login()).Show();
-            this.Hide();
+			this.parent.Show();
+            this.Close();
 		}
     }
 }
