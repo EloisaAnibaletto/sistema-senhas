@@ -51,7 +51,6 @@ namespace Views
             } catch (Exception err) {
                 MessageBox.Show(err.Message);
             }
-
         }
         private void handleCancel(object sender, EventArgs e)
         {
