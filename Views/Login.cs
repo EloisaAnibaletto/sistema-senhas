@@ -1,11 +1,5 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Drawing;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using Views.Lib;
 using Controllers;
 
@@ -45,6 +39,7 @@ namespace Views
             } catch (Exception err) {
                 MessageBox.Show(err.Message);
             }
+            (new Menu(this)).Show();
 
         }
         private void handleCancel(object sender, EventArgs e)
