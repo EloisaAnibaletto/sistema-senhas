@@ -40,9 +40,11 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            /*try {
+            try {
+                ListViewItem item = this.parent.listView.SelectedItems[0];
+                int id = Convert.ToInt32(item.Text);
                 CategoriaController.AlterarCategoria(
-                    this.SelectedItems.Id,
+                    id,
                     this.fieldNome.txtField.Text,
                     this.fieldDescricao.txtField.Text
                 );
@@ -51,7 +53,7 @@ namespace Views
                 this.Close();
             } catch (Exception err) {
                 MessageBox.Show(err.Message);
-            }*/
+            }
         }
         private void handleCancel(object sender, EventArgs e)
         {
