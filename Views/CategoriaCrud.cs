@@ -60,7 +60,6 @@ namespace Views
                 this.listView.Items.Add(lvItem);
             }
         }
-
         private void handleIncluir(object sender, EventArgs e)
         {
             (new InserirCategoria(this)).Show();
@@ -69,18 +68,29 @@ namespace Views
         private void handleAlterar(object sender, EventArgs e)
         {
             if (listView.SelectedItems.Count > 0) {
-                ListViewItem item = this.listView.SelectedItems[0];
-                int id = Convert.ToInt32(item.Text);
+                (new AlterarCategoria(this)).Show();
+                this.Hide();
             } else {
                 MessageBox.Show("Selecione 1 item da lista");
             }
-            (new AlterarCategoria(this)).Show();
-            this.Hide();
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            //(new ExcluirPaciente()).Show();
-            //this.Hide();
+            if (listView.SelectedItems.Count > 0) {
+                ListViewItem item = this.listView.SelectedItems[0];
+                int id = Convert.ToInt32(item.Text);
+                try {
+                CategoriaController.ExcluirCategoria(
+                    id
+                );
+                } catch (Exception err) {
+                    MessageBox.Show(err.Message);
+                }
+             }else {
+                MessageBox.Show("Selecione 1 item da lista");
+            }
+            this.parent.Show();
+            this.Close();
         }
         private void handleVoltar(object sender, EventArgs e)
         {
