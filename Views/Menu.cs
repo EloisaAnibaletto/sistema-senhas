@@ -1,13 +1,6 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Drawing;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using Views.Lib;
-using Views;
 
 namespace Views
 {
@@ -26,7 +19,7 @@ namespace Views
             btnCategoria = new ButtonForm("Categoria", 100, 30, this.handleCategoria);
             btnTag = new ButtonForm("Tag", 100, 80, this.handleTag);
             btnSenhas = new ButtonForm("Senhas", 100, 130, this.handleSenhas);
-            btnUsuário = new ButtonForm("Usuário", 100, 180, this.handleUsuário);
+            btnUsuário = new ButtonForm("Usuário", 100, 180, this.handleUsuario);
             btnSair = new ButtonForm("Sair", 100, 230, this.handleSair);
 
             this.Controls.Add(btnCategoria);
@@ -43,20 +36,20 @@ namespace Views
         }
         private void handleTag(object sender, EventArgs e)
         {
-            //(new TagCrud()).Show();
+            (new TagCrud(this)).Show();
             this.Hide();
 
         }
         private void handleSenhas(object sender, EventArgs e)
         {
-            //(new SenhasCrud()).Show();
-            this.Hide();
+            /*(new SenhaCrud(this)).Show();
+            this.Hide();*/
 
         }
-        private void handleUsuário(object sender, EventArgs e)
+        private void handleUsuario(object sender, EventArgs e)
         {
-            //(new UsuárioCrud()).Show();
-            this.Hide();
+            /*(new UsuarioCrud(this)).Show();
+            this.Hide();*/
 
         }
         private void handleSair(object sender, EventArgs e) {
