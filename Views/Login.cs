@@ -16,6 +16,7 @@ namespace Views
         {
             fieldUsuario = new FieldForm("Usuário",20,20,260,20);
             fieldSenha = new FieldForm("Senha",20,100,260,60);
+            fieldSenha.txtField.PasswordChar = '*';
 
 			btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 220, this.handleCancel);
