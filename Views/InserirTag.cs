@@ -27,7 +27,6 @@ namespace Views
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
         }
-
         private void handleConfirm(object sender, EventArgs e)
         {
            try {
