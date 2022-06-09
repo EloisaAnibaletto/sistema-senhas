@@ -42,14 +42,14 @@ namespace Views
         }
         private void handleSenhas(object sender, EventArgs e)
         {
-            /*(new SenhaCrud(this)).Show();
-            this.Hide();*/
+            (new SenhaCrud(this)).Show();
+            this.Hide();
 
         }
         private void handleUsuario(object sender, EventArgs e)
         {
-            /*(new UsuarioCrud(this)).Show();
-            this.Hide();*/
+            (new UsuarioCrud(this)).Show();
+            this.Hide();
 
         }
         private void handleSair(object sender, EventArgs e) {
