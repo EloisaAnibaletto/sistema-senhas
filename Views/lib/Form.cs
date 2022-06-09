@@ -5,7 +5,8 @@ namespace Views.Lib {
     {
         Small,
         Medium,
-        Large
+        Large,
+        Different
     }
 
 
@@ -25,8 +26,11 @@ namespace Views.Lib {
                 case SizeScreen.Medium:
                     this.ClientSize = new System.Drawing.Size(600, 600);
                     break;
-                default:
+                case SizeScreen.Small:
                     this.ClientSize = new System.Drawing.Size(300, 300);
+                    break;
+                default:
+                    this.ClientSize = new System.Drawing.Size(300, 900);
                     break;
             }
             this.Text = Title;
