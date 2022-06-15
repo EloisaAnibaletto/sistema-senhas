@@ -40,8 +40,6 @@ namespace Views
             } catch (Exception err) {
                 MessageBox.Show(err.Message);
             }
-            (new Menu(this)).Show();
-
         }
         private void handleCancel(object sender, EventArgs e)
         {
