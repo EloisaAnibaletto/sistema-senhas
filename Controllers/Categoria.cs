@@ -34,7 +34,7 @@ namespace Controllers
             if (!String.IsNullOrEmpty(Descricao)) {
                 categoria.Descricao = Descricao;
             }
-            categoria.Nome = Nome;
+            //categoria.Nome = Nome;
             Models.Categoria.AlterarCategoria(Id, Nome, Descricao);
 
             return categoria;
