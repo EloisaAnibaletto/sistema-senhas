@@ -73,7 +73,6 @@ namespace Controllers
         )
         {
             Senha senha = Senha.GetSenha(Id);
-            CategoriaController.GetCategoria(CategoriaId);
 
             if (!String.IsNullOrEmpty(Nome))
             {
@@ -108,6 +107,7 @@ namespace Controllers
             {
                 senha.Procedimento = Procedimento;
             }
+            Models.Senha.AlterarSenha(Id, Nome, CategoriaId, Url, Usuario, SenhaEncrypt, Procedimento);
             return senha;
         }
         public static Senha ExcluirSenha(
