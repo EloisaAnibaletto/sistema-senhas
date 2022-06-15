@@ -29,7 +29,8 @@ namespace Controllers
             if (!String.IsNullOrEmpty(Descricao)) {
                 tag.Descricao = Descricao;
             }
-
+            Models.Tag.AlterarTag(Id, Descricao);
+            
             return tag;
         }
         public static Tag ExcluirTag(
