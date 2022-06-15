@@ -83,6 +83,9 @@ namespace Views
                 CategoriaController.ExcluirCategoria(
                     id
                 );
+                this.LoadInfo();//NÃO CONSEGUI FECHAR APOS EXCLUIR E ABRIR LIST ATUALIZADA
+                this.parent.Show();
+                this.Close();
                 } catch (Exception err) {
                     MessageBox.Show(err.Message);
                 }
