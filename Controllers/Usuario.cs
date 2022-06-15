@@ -16,15 +16,19 @@ namespace Controllers
             string Senha
         )
         {
+            if (String.IsNullOrEmpty(Nome)) 
+            {
+                throw new Exception("Nome é obrigatório");
+            }
+            if (String.IsNullOrEmpty(Email)) 
+            {
+                throw new Exception("Email é obrigatório");
+            }
             Regex rx = new Regex("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
 
             if (String.IsNullOrEmpty(Email) || !rx.IsMatch(Email))
             {
                 throw new Exception("Email inválido");
-            }
-            if (String.IsNullOrEmpty(Email)) 
-            {
-                throw new Exception("Email é obrigatório");
             }
             if (Senha.Length < 8) {
                 throw new Exception("A senha deve ter no mínimo 8 caracteres.");
