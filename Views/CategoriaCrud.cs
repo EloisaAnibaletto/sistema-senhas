@@ -83,17 +83,13 @@ namespace Views
                 CategoriaController.ExcluirCategoria(
                     id
                 );
-                this.LoadInfo();//NÃO CONSEGUI FECHAR APOS EXCLUIR E ABRIR LIST ATUALIZADA
-                this.parent.Show();
-                this.Close();
+                this.LoadInfo();
                 } catch (Exception err) {
                     MessageBox.Show(err.Message);
                 }
              }else {
                 MessageBox.Show("Selecione 1 item da lista");
             }
-            this.parent.Show();
-            this.Close();
         }
         private void handleVoltar(object sender, EventArgs e)
         {
