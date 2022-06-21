@@ -20,7 +20,7 @@ namespace Views
 
 			btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 220, this.handleCancel);
-
+            
             this.Controls.Add(fieldUsuario.lblField);
             this.Controls.Add(fieldUsuario.txtField);
             this.Controls.Add(fieldSenha.lblField);
@@ -48,6 +48,5 @@ namespace Views
                 Application.Exit();
             }
         }
-    
     }
 }
