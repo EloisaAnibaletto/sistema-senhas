@@ -86,14 +86,13 @@ namespace Views
                 SenhaController.ExcluirSenha(
                     id
                 );
+                this.LoadInfo();
                 } catch (Exception err) {
                     MessageBox.Show(err.Message);
                 }
              }else {
                 MessageBox.Show("Selecione 1 item da lista");
             }
-            this.parent.Show();
-            this.Close();
         }
         private void handleVoltar(object sender, EventArgs e)
         {
