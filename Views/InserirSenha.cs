@@ -95,20 +95,21 @@ namespace Views
                     this.fieldSenha.txtField.Text,
                     this.fieldProcedimento.txtField.Text
                 );
-                if (checkedList.SelectedItems.Count > 0) {
+                if (checkedList.SelectedItems.Count > 0) 
+                {
                     foreach (var item in checkedList.SelectedItems)
                     {
                         //SenhaTagController.InserirSenhaTag(0, item.ToString());
                     }
                     //this.Hide();
-
                 } else {
                     MessageBox.Show("Selecione 1 Tag da lista");
                 }
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            } catch (Exception err) 
+            {
                 MessageBox.Show(err.Message);
             }
         }
