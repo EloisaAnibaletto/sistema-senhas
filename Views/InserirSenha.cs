@@ -87,7 +87,7 @@ namespace Views
                 string comboBoxValue = this.comboBox.Text; // "1 - Nome"
                 string[] destructComboBoxValue = comboBoxValue.Split('-'); // ["1 ", " Nome"];
                 string idCategoria = destructComboBoxValue[0].Trim(); // "1 " => "1"
-                SenhaController.InserirSenha(
+                Senha senha = SenhaController.InserirSenha(
                     this.fieldNome.txtField.Text,
                     Convert.ToInt32(idCategoria),
                     this.fieldUrl.txtField.Text,
@@ -95,11 +95,15 @@ namespace Views
                     this.fieldSenha.txtField.Text,
                     this.fieldProcedimento.txtField.Text
                 );
-                if (checkedList.SelectedItems.Count > 0) 
+                if (checkedList.CheckedItems.Count > 0) 
                 {
-                    foreach (var item in checkedList.SelectedItems)
+                    foreach (object itemList in checkedList.CheckedItems)
                     {
-                        //SenhaTagController.InserirSenhaTag(0, item.ToString());
+                        string checkedValue = itemList.ToString(); // "1 - Nome"
+                        string[] destructCheckedValue = checkedValue.Split('-'); // ["1 ", " Nome"];
+                        string idTagString = destructCheckedValue[0].Trim(); // "1 " => "1"
+                        int idTag = Convert.ToInt32(idTagString);
+                        SenhaTagController.InserirSenhaTag(senha.Id, idTag);
                     }
                     //this.Hide();
                 } else {
