@@ -70,8 +70,14 @@ namespace Models
             IEnumerable<SenhaTag> senhaTags = from SenhaTag in db.SenhaTags
                             where SenhaTag.SenhaId == SenhaId && SenhaTag.TagId == TagId
                             select SenhaTag;
-
-            return senhaTags.First();
+            try
+            {
+                return senhaTags.First();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static SenhaTag GetById(int Id)
