@@ -60,8 +60,6 @@ namespace Views
             richBox = new RichTextBox();
             richBox.Location = new Point(20, 410);
             richBox.Size = new System.Drawing.Size(230, 100);
-			btnConfirmar = new ButtonForm("Confirmar", 100, 700, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 100, 760, this.handleCancel);
 
 			btnConfirmar = new ButtonForm("Confirmar", 100, 700, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 760, this.handleCancel);
@@ -86,6 +84,12 @@ namespace Views
         private void handleConfirm(object sender, EventArgs e)
         {
             try {
+                if (checkedList.CheckedItems.Count == 0) 
+                {
+                    MessageBox.Show("Selecione 1 Tag da lista");
+                    return;
+                }
+
                 string comboBoxValue = this.comboBox.Text; // "1 - Nome"
                 string[] destructComboBoxValue = comboBoxValue.Split('-'); // ["1 ", " Nome"];
                 string idCategoria = destructComboBoxValue[0].Trim(); // "1 " => "1"
@@ -101,16 +105,20 @@ namespace Views
                     this.fieldProcedimento.txtField.Text
                     //TAG??
                 );
-                if (checkedList.SelectedItems.Count > 0) 
+                
+                IEnumerable<Tag> tags = TagController.GetTags();
+                foreach (Tag tag in tags)
                 {
-                    foreach (var itemList in checkedList.SelectedItems)
-                    {
-                        //SenhaTagController.InserirSenhaTag(0, item.ToString());
+                    SenhaTag senhaTag = SenhaTagController.GetSenhaTag(id, tag.Id);
+                    bool checkedSenhaTag = checkedList.CheckedItems.Contains(tag.ToString());
+                    if (checkedSenhaTag && senhaTag == null) {
+                        SenhaTagController.InserirSenhaTag(id, tag.Id);
                     }
-                    //this.Hide();
-                } else {
-                    MessageBox.Show("Selecione 1 Tag da lista");
+                    if (!checkedSenhaTag && senhaTag != null) {
+                        SenhaTagController.ExcluirSenhaTag(senhaTag.Id);
+                    }
                 }
+
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
