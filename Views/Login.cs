@@ -11,6 +11,7 @@ namespace Views
         FieldForm fieldSenha;
 		ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
+        ButtonForm btnCadastrar;
 
         public Login() : base("Login",SizeScreen.Small)
         {
@@ -20,6 +21,7 @@ namespace Views
 
 			btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 220, this.handleCancel);
+            btnCadastrar = new ButtonForm("Cadastrar", 100, 260, this.handleCancel);
             
             this.Controls.Add(fieldUsuario.lblField);
             this.Controls.Add(fieldUsuario.txtField);
@@ -27,17 +29,21 @@ namespace Views
             this.Controls.Add(fieldSenha.txtField);
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
+            this.Controls.Add(btnCadastrar);
         }
 
          private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try 
+            {
                 UsuarioController.Auth(
                     this.fieldUsuario.txtField.Text,
                     this.fieldSenha.txtField.Text
                 );
                 (new Menu(this)).Show();
-            } catch (Exception err) {
+            } 
+            catch (Exception err) 
+            {
                 MessageBox.Show(err.Message);
             }
         }
