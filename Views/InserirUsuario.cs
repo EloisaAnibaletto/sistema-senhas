@@ -11,19 +11,19 @@ namespace Views
         FieldForm fieldNome;
         FieldForm fieldEmail;
         FieldForm fieldSenha;
-		ButtonForm btnConfirmar;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public InserirUsuario(UsuarioCrud parent) : base("InserirUsuario",SizeScreen.Small)
+        public InserirUsuario(UsuarioCrud parent) : base("InserirUsuario", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
 
-            fieldNome = new FieldForm("Nome",20,10,260,20);
-            fieldEmail = new FieldForm("Email",20,80,260,60);
-            fieldSenha = new FieldForm("Senha",20,140,260,60);
+            fieldNome = new FieldForm("Nome", 20, 10, 260, 20);
+            fieldEmail = new FieldForm("Email", 20, 80, 260, 60);
+            fieldSenha = new FieldForm("Senha", 20, 140, 260, 60);
 
-			btnConfirmar = new ButtonForm("Confirmar", 100, 220, this.handleConfirm);
+            btnConfirmar = new ButtonForm("Confirmar", 100, 220, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 260, this.handleCancel);
 
             this.Controls.Add(fieldNome.lblField);
@@ -38,7 +38,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 UsuarioController.InserirUsuario(
                     this.fieldNome.txtField.Text,
                     this.fieldEmail.txtField.Text,
@@ -47,7 +48,9 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
         }
@@ -59,6 +62,6 @@ namespace Views
                 this.Close();
             }
         }
-    
+
     }
 }
