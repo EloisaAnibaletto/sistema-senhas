@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Models;
 using System.Text.RegularExpressions;
-using Repository;
-using Microsoft.EntityFrameworkCore;
-using System.Windows.Forms;
-using System.Text;
 
 namespace Controllers
 {
@@ -25,7 +21,8 @@ namespace Controllers
             {
                 throw new Exception("Nome é obrigatório");
             }
-            try {
+            try 
+            {
                 CategoriaController.GetCategoria(CategoriaId);
             }
             catch
@@ -78,7 +75,8 @@ namespace Controllers
             {
                 senha.Nome = Nome;
             }
-            try {
+            try 
+            {
                 CategoriaController.GetCategoria(CategoriaId);
             }
             catch
