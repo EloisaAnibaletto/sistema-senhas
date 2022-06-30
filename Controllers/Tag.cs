@@ -7,12 +7,12 @@ namespace Controllers
 {
     public class TagController
     {
-     
         public static Tag InserirTag(
             string Descricao
         )
         {
-            if (String.IsNullOrEmpty(Descricao)) {
+            if (String.IsNullOrEmpty(Descricao)) 
+            {
                 throw new Exception("Número é obrigatório");
             }
 
@@ -26,7 +26,8 @@ namespace Controllers
         {
             Tag tag = Tag.GetTag(Id);
 
-            if (!String.IsNullOrEmpty(Descricao)) {
+            if (!String.IsNullOrEmpty(Descricao)) 
+            {
                 tag.Descricao = Descricao;
             }
             Models.Tag.AlterarTag(Id, Descricao);
