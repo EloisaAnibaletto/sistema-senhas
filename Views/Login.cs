@@ -7,42 +7,49 @@ namespace Views
 {
     public class Login : BaseForm
     {
+        Title login;
         FieldForm fieldUsuario;
         FieldForm fieldSenha;
-		ButtonForm btnConfirmar;
+        FieldForm fieldAcesso;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
         ButtonForm btnCadastrar;
 
-        public Login() : base("Login",SizeScreen.Small)
+        public Login() : base("Login", SizeScreen.Small)
         {
-            fieldUsuario = new FieldForm("Usuário",20,20,260,20);
-            fieldSenha = new FieldForm("Senha",20,100,260,60);
+            login = new Title("Login", SizeScreen.Small);
+            login.Padding = new Padding(125, 10, 0, 0);
+            fieldUsuario = new FieldForm("Usuário", 20, 40, 260, 20);
+            fieldSenha = new FieldForm("Senha", 20, 100, 260, 60);
+            fieldAcesso = new FieldForm("Seu primeiro acesso? Clique para cadastrar", 40, 245, 260, 100);
             fieldSenha.txtField.PasswordChar = '*';
 
-			btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
-            btnCancelar = new ButtonForm("Cancelar", 100, 220, this.handleCancel);
-            btnCadastrar = new ButtonForm("Cadastrar", 100, 260, this.handleCancel);
-            
+            btnConfirmar = new ButtonForm("Confirmar", 100, 170, this.handleConfirm);
+            btnCancelar = new ButtonForm("Cancelar", 100, 210, this.handleCancel);
+            btnCadastrar = new ButtonForm("Cadastrar", 100, 265, this.handleCadastrarUsuario);
+
+            this.Controls.Add(login);
             this.Controls.Add(fieldUsuario.lblField);
             this.Controls.Add(fieldUsuario.txtField);
             this.Controls.Add(fieldSenha.lblField);
             this.Controls.Add(fieldSenha.txtField);
+            this.Controls.Add(fieldAcesso.lblField);
             this.Controls.Add(btnConfirmar);
             this.Controls.Add(btnCancelar);
             this.Controls.Add(btnCadastrar);
         }
 
-         private void handleConfirm(object sender, EventArgs e)
+        private void handleConfirm(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 UsuarioController.Auth(
                     this.fieldUsuario.txtField.Text,
                     this.fieldSenha.txtField.Text
                 );
                 (new Menu(this)).Show();
-            } 
-            catch (Exception err) 
+            }
+            catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
@@ -53,6 +60,12 @@ namespace Views
             {
                 Application.Exit();
             }
+        }
+        private void handleCadastrarUsuario(object sender, EventArgs e)
+        {
+            (new CadastrarUsuario(this)).Show();
+            this.Hide();
+
         }
     }
 }
