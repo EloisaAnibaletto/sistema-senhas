@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Models;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Text;
 
 namespace Controllers
 {
@@ -53,7 +51,8 @@ namespace Controllers
         )
         {
             Usuario usuario;
-            try {
+            try 
+            {
                 usuario = Usuario.GetUsuario(Id);
             }
             catch
@@ -78,7 +77,8 @@ namespace Controllers
             }
             usuario.Email = Email;
 
-            if (Senha.Length < 8) {
+            if (Senha.Length < 8) 
+            {
                 throw new Exception("A senha deve ter no mínimo 8 caracteres.");
             }
             usuario.Senha = Senha;
@@ -118,7 +118,8 @@ namespace Controllers
             return usuario;
         }
         public static void Auth(string Email, string Senha) {
-            try {
+            try 
+            {
                 Usuario.Auth(Email, Senha);
             }
             catch
