@@ -1,11 +1,5 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Drawing;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using Views.Lib;
 using Controllers;
 
@@ -16,18 +10,18 @@ namespace Views
         CategoriaCrud parent;
         FieldForm fieldNome;
         FieldForm fieldDescricao;
-		ButtonForm btnConfirmar;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public InserirCategoria(CategoriaCrud parent) : base("InserirCategoria",SizeScreen.Small)
+        public InserirCategoria(CategoriaCrud parent) : base("InserirCategoria", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
 
-            fieldNome = new FieldForm("Nome",20,20,260,20);
-            fieldDescricao = new FieldForm("Descricao",20,100,260,60);
+            fieldNome = new FieldForm("Nome", 20, 20, 260, 20);
+            fieldDescricao = new FieldForm("Descricao", 20, 100, 260, 60);
 
-			btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
+            btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 220, this.handleCancel);
 
             this.Controls.Add(fieldNome.lblField);
@@ -40,7 +34,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 CategoriaController.InserirCategoria(
                     this.fieldNome.txtField.Text,
                     this.fieldDescricao.txtField.Text
@@ -48,7 +43,9 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
         }
@@ -60,6 +57,6 @@ namespace Views
                 this.Close();
             }
         }
-    
+
     }
 }
