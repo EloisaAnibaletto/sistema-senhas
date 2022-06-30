@@ -9,17 +9,17 @@ namespace Views
     {
         TagCrud parent;
         FieldForm fieldDescricao;
-		ButtonForm btnConfirmar;
+        ButtonForm btnConfirmar;
         ButtonForm btnCancelar;
 
-        public InserirTag(TagCrud parent) : base("InserirTag",SizeScreen.Small)
+        public InserirTag(TagCrud parent) : base("InserirTag", SizeScreen.Small)
         {
             this.parent = parent;
             this.parent.Hide();
 
-            fieldDescricao = new FieldForm("Descrição",20,70,260,50);
+            fieldDescricao = new FieldForm("Descrição", 20, 70, 260, 50);
 
-			btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
+            btnConfirmar = new ButtonForm("Confirmar", 100, 180, this.handleConfirm);
             btnCancelar = new ButtonForm("Cancelar", 100, 220, this.handleCancel);
 
             this.Controls.Add(fieldDescricao.lblField);
@@ -29,14 +29,17 @@ namespace Views
         }
         private void handleConfirm(object sender, EventArgs e)
         {
-           try {
+            try
+            {
                 TagController.InserirTag(
                     this.fieldDescricao.txtField.Text
                 );
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
         }
@@ -48,6 +51,6 @@ namespace Views
                 this.Close();
             }
         }
-    
+
     }
 }
