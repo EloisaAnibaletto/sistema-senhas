@@ -21,19 +21,19 @@ namespace Views
             this.parent = parent;
             this.parent.Hide();
             listView = new ListView();
-			listView.Location = new Point(10, 20);
-			listView.Size = new Size(580,350);
-			listView.View = View.Details;
-			listView.Columns.Add("ID", -2, HorizontalAlignment.Left);
-			listView.Columns.Add("Descrição", -2, HorizontalAlignment.Left);
+            listView.Location = new Point(10, 20);
+            listView.Size = new Size(580, 350);
+            listView.View = View.Details;
+            listView.Columns.Add("ID", -2, HorizontalAlignment.Left);
+            listView.Columns.Add("Descrição", -2, HorizontalAlignment.Left);
             listView.FullRowSelect = true;
-			listView.GridLines = true;
-			listView.AllowColumnReorder = true;
-			listView.Sorting = SortOrder.Ascending;
-            btnIncluir = new ButtonForm("Incluir",100,450, this.handleIncluir);
-            btnAlterar = new ButtonForm("Alterar",200,450, this.handleAlterar);
-            btnExcluir = new ButtonForm("Excluir",300,450, this.handleExcluir);
-            btnVoltar = new ButtonForm("Voltar",400,450, this.handleVoltar);
+            listView.GridLines = true;
+            listView.AllowColumnReorder = true;
+            listView.Sorting = SortOrder.Ascending;
+            btnIncluir = new ButtonForm("Incluir", 100, 450, this.handleIncluir);
+            btnAlterar = new ButtonForm("Alterar", 200, 450, this.handleAlterar);
+            btnExcluir = new ButtonForm("Excluir", 300, 450, this.handleExcluir);
+            btnVoltar = new ButtonForm("Voltar", 400, 450, this.handleVoltar);
 
             this.LoadInfo();
             this.Controls.Add(listView);
@@ -42,7 +42,8 @@ namespace Views
             this.Controls.Add(btnExcluir);
             this.Controls.Add(btnVoltar);
         }
-        public void LoadInfo() {
+        public void LoadInfo()
+        {
             IEnumerable<Tag> tags = TagController.GetTags();
 
             this.listView.Items.Clear();
@@ -62,34 +63,43 @@ namespace Views
         }
         private void handleAlterar(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count > 0) {
+            if (listView.SelectedItems.Count > 0)
+            {
                 (new AlterarTag(this)).Show();
                 this.Hide();
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Selecione 1 item da lista");
             }
         }
         private void handleExcluir(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count > 0) {
+            if (listView.SelectedItems.Count > 0)
+            {
                 ListViewItem item = this.listView.SelectedItems[0];
                 int id = Convert.ToInt32(item.Text);
-                try {
-                TagController.ExcluirTag(
-                    id
-                );
-                this.LoadInfo();
-                } catch (Exception err) {
+                try
+                {
+                    TagController.ExcluirTag(
+                        id
+                    );
+                    this.LoadInfo();
+                }
+                catch (Exception err)
+                {
                     MessageBox.Show(err.Message);
                 }
-             }else {
+            }
+            else
+            {
                 MessageBox.Show("Selecione 1 item da lista");
             }
         }
         private void handleVoltar(object sender, EventArgs e)
         {
             this.parent.Show();
-            this.Close(); 
+            this.Close();
         }
     }
 }
