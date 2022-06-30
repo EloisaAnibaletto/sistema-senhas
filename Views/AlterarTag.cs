@@ -30,7 +30,8 @@ namespace Views
 
         private void handleConfirm(object sender, EventArgs e)
         {
-            try {
+            try 
+            {
                 ListViewItem item = this.parent.listView.SelectedItems[0];
                 int id = Convert.ToInt32(item.Text);
                 TagController.AlterarTag(
@@ -40,7 +41,9 @@ namespace Views
                 this.parent.LoadInfo();
                 this.parent.Show();
                 this.Close();
-            } catch (Exception err) {
+            } 
+            catch (Exception err) 
+            {
                 MessageBox.Show(err.Message);
             }
         }
