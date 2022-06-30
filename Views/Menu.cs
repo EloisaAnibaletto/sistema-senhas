@@ -6,14 +6,17 @@ namespace Views
 {
     public class Menu : BaseForm
     {
+        Title menu;
         Form parent;
         ButtonForm btnCategoria;
         ButtonForm btnTag;
         ButtonForm btnSenhas;
         ButtonForm btnUsuário;
         ButtonForm btnSair;
-        public Menu(Form parent) : base("Bem-Vindo", SizeScreen.Small) 
+        public Menu(Form parent) : base("Bem-Vindo", SizeScreen.Small)
         {
+            menu = new Title("Menu", SizeScreen.Small);
+            menu.Padding = new Padding(125, 10, 0, 0);
             this.parent = parent;
             this.parent.Hide();
             btnCategoria = new ButtonForm("Categoria", 100, 30, this.handleCategoria);
@@ -52,9 +55,10 @@ namespace Views
             this.Hide();
 
         }
-        private void handleSair(object sender, EventArgs e) {
-			this.parent.Show();
+        private void handleSair(object sender, EventArgs e)
+        {
+            this.parent.Show();
             this.Close();
-		}
+        }
     }
 }
